@@ -1,8 +1,2 @@
 <?php
-
-function dnd($data) {
-   echo '<pre>';
-   var_dump($data);
-   echo '</pre>';
-   die();
-}
+require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'helpers' . DS . 'helpers.php');
