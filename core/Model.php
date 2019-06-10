@@ -21,6 +21,7 @@ class Model
    {
       $columns = $this->get_columns();
       foreach ($columns as $column) {
+         $columnName = $column->Field;
          $this->_columnNames[] = $column->Field;
          $this->{$columnName} = null;
       }
@@ -70,8 +71,7 @@ class Model
       /// determine whether to update or insert
       if (property_exists($this, 'id') && $this->id !== '') {
          return $this->update($this->id, $fields);
-      }
-      else {
+      } else {
          return $this->insert($fields);
       }
    }
@@ -115,7 +115,7 @@ class Model
    public function data()
    {
       $data = new stdClass();
-      foreach ($this->columnNames as $column) {
+      foreach ($this->_columnNames as $column) {
          $data->column = $this->column;
       }
 
