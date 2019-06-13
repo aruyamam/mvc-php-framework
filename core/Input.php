@@ -10,7 +10,7 @@ class Input
    public static function get($input)
    {
       if (isset($_POST[$input])) {
-         return self::sanitaize($_POST($input));
+         return self::sanitaize($_POST[$input]);
       } else if (isset($_GET[$input])) {
          return self::sanitaize($_GET[$input]);
       }
