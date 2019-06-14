@@ -12,7 +12,7 @@ class Cookie
 
    public static function delete($name)
    {
-      self::set($name, '', time() -1);
+      self::set($name, null, -1);
    }
 
    public static function get($name)
