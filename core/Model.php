@@ -101,7 +101,7 @@ class Model
       if ($id === '' && $this->id === '') {
          return false;
       }
-      $id = ($id === '') ? $this->_id : $id;
+      $id = ($id === '') ? $this->id : $id;
       if ($this->_softDelete) {
          return $this->update($id, ['deleted' => 1]);
       }
