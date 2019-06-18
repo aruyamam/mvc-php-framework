@@ -1,6 +1,7 @@
 <?php
 
-class DB {
+class DB
+{
 
    private static $_instance = null;
    private $_pdo, $_query, $_error = false, $_result, $_count = 0, $_lastInsertID = null;
@@ -9,8 +10,7 @@ class DB {
    {
       try {
          $this->_pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-      }
-      catch (PDOException $e) {
+      } catch (PDOException $e) {
          die($e->getMessage());
       }
    }
@@ -40,8 +40,7 @@ class DB {
             $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
             $this->_count = $this->_query->rowCount();
             $this->_lastInsertID = $this->_pdo->lastInsertId();
-         }
-         else {
+         } else {
             $this->_error = true;
          }
       }
@@ -64,8 +63,7 @@ class DB {
             }
             $conditionString = trim($conditionString);
             $conditionString = rtrim($conditionString, ' AND');
-         }
-         else {
+         } else {
             $conditionString = $params['conditions'];
          }
 
@@ -136,7 +134,8 @@ class DB {
 
       if (!$this->query($sql, $values)->error()) {
          return true;
-      } 
+      }
+      dnd($this->query($sql, $values)->error());
 
       return false;
    }
@@ -165,7 +164,7 @@ class DB {
       if (!$this->query($sql)->error()) {
          return true;
       }
-      
+
       return false;
    }
 
