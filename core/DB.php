@@ -135,7 +135,6 @@ class DB
       if (!$this->query($sql, $values)->error()) {
          return true;
       }
-      dnd($this->query($sql, $values)->error());
 
       return false;
    }

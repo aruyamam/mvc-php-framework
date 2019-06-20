@@ -1,7 +1,7 @@
 {
   "Guest": {
     "denied": {},
-    "Home": [""],
+    "Home": ["*"],
     "Register": ["login", "register"],
     "Resricted": ["*"]
   },
