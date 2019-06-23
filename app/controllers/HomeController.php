@@ -1,6 +1,6 @@
 <?php
 
-class Restricted extends Controller
+class HomeController extends Controller
 {
    public function __construct($controller, $action)
    {
@@ -9,6 +9,6 @@ class Restricted extends Controller
 
    public function indexAction()
    {
-      $this->view->render('restricted/index');
+      $this->view->render('home/index');
    }
 }
