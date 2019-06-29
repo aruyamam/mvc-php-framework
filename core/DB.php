@@ -124,9 +124,11 @@ class DB
       $values = [];
 
       foreach ($fields as $field => $value) {
-         $fieldString .= '`' . $field . '`,';
-         $valueString .= '?,';
-         $values[] = $value;
+         if (!empty($value)) {
+            $fieldString .= '`' . $field . '`,';
+            $valueString .= '?,';
+            $values[] = $value;
+         }
       }
       $fieldString = rtrim($fieldString, ',');
       $valueString = rtrim($valueString, ',');

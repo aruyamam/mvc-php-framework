@@ -9,9 +9,7 @@ class View
    protected $_layout = DEFAULT_LAYOUT;
 
    public function __construct()
-   {
-
-   }
+   { }
 
    public function render($viewName)
    {
@@ -20,8 +18,7 @@ class View
       if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
          include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
          include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
-      }
-      else {
+      } else {
          die('The view \"' . $viewName . '\" does not exist.');
       }
    }
@@ -30,8 +27,7 @@ class View
    {
       if ($type === 'head') {
          return $this->_head;
-      }
-      elseif ($type === 'body') {
+      } elseif ($type === 'body') {
          return $this->_body;
       }
 
@@ -48,11 +44,9 @@ class View
    {
       if ($this->_outputBuffer === 'head') {
          $this->_head = ob_get_clean();
-      }
-      elseif ($this->_outputBuffer === 'body') {
+      } elseif ($this->_outputBuffer === 'body') {
          $this->_body = ob_get_clean();
-      }
-      else {
+      } else {
          die('You must first run the start method.');
       }
    }
@@ -70,5 +64,15 @@ class View
    public function setLayout($path)
    {
       $this->_layout = $path;
+   }
+
+   public function insert($path)
+   {
+      include ROOT . DS . 'app' . DS . 'views' . DS . $path . '.php';
+   }
+
+   public function partial($group, $partial)
+   {
+      include ROOT . DS . 'app' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
    }
 }

@@ -104,7 +104,11 @@ class Validate
 
    public function displayErrors()
    {
-      $html = '<ul class="alert-danger">';
+      if (empty($this->_errors)) {
+         return '';
+      }
+
+      $html = '<ul class="alert alert-danger pl-5">';
       foreach ($this->_errors as $error) {
          if (is_array($error)) {
             $html .= '<li class="text-danger">' . $error[0] . '</li>';
