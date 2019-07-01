@@ -17,7 +17,11 @@
             <td><?= $contact->cell_phone; ?></td>
             <td><?= $contact->home_phone; ?></td>
             <td><?= $contact->work_phone; ?></td>
-            <td></td>
+            <td>
+               <a href="<?= PROOT ?>contacts/delete/<?= $contact->id ?>" class="btn btn-danger btn-sm" onclick="if(!confirm('Are you sure?')) return false;">
+                  <i class="fas fa-times"></i> Delete
+               </a>
+            </td>
          </tr>
       <?php endforeach; ?>
    </tbody>

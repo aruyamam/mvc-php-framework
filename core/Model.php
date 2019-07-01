@@ -118,10 +118,10 @@ class Model
 
    public function delete($id = '')
    {
-      if ($id === '' && $this->id === '') {
+      if ($id == '' && $this->id == '') {
          return false;
       }
-      $id = ($id === '') ? $this->id : $id;
+      $id = ($id == '') ? $this->id : $id;
       if ($this->_softDelete) {
          return $this->update($id, ['deleted' => 1]);
       }
