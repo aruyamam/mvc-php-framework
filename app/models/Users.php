@@ -6,6 +6,13 @@ class Users extends Model
    private $_sessoinName;
    private $_cookieName;
    public static $currentLoggedInUser = null;
+   public $id;
+   public $username;
+   public $email;
+   public $password;
+   public $fname;
+   public $lname;
+   public $acl;
 
    public function __construct($user = '')
    {
@@ -19,12 +26,12 @@ class Users extends Model
             $u = $this->_db->findFirst('users', [
                'conditions' => 'id = ?',
                'bind' => [$user]
-            ]);
+            ], 'Users');
          } else {
             $u = $this->_db->findFirst('users', [
                'conditions' => 'username = ?',
                'bind' => [$user]
-            ]);
+            ], 'Users');
          }
          if ($u) {
             foreach ($u as $key => $val) {
@@ -45,7 +52,7 @@ class Users extends Model
    public static function currentLoggedInUser()
    {
       if (self::$currentLoggedInUser === null && Session::exists(CURRENT_USER_SESSION_NAME)) {
-         $u = new Users((int)Session::get(CURRENT_USER_SESSION_NAME));
+         $u = new Users((int) Session::get(CURRENT_USER_SESSION_NAME));
          self::$currentLoggedInUser = $u;
       }
 
@@ -73,7 +80,7 @@ class Users extends Model
    {
       $userSession = UserSessions::getFromCookie();
       if ($userSession->user_id !== '') {
-         $user = new self((int)$userSession->user_id);
+         $user = new self((int) $userSession->user_id);
       }
       if ($user) {
          $user->login();

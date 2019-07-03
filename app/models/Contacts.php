@@ -2,6 +2,20 @@
 
 class Contacts extends Model
 {
+   public $id;
+   public $user_id;
+   public $fname;
+   public $lname;
+   public $email;
+   public $address;
+   public $address2;
+   public $city;
+   public $state;
+   public $zip;
+   public $home_phone;
+   public $cell_phone;
+   public $work_phone;
+
    public function __construct()
    {
       $table = 'contacts';
