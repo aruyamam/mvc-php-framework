@@ -3,6 +3,7 @@
 <?php $this->start('body'); ?>
 <div class="col-md-6 offset-md-3 card card-body bg-light">
    <form action="<?= PROOT ?>register/login" class="form" method="post">
+      <?= FH::csrfInput(); ?>
       <div><?= $this->displayErrors; ?></div>
       <h3 class="text-center">Log In</h3>
       <div class="form-group">

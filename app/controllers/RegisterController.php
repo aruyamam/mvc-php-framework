@@ -24,7 +24,7 @@ class RegisterController extends Controller
                'required' => true,
                'min' => 6
             ]
-         ]);
+         ], true);
          if ($validation->passed()) {
             $user = $this->UsersModel->findByUsername($_POST['username']);
             if ($user && password_verify(Input::get('password'), $user->password)) {
@@ -94,7 +94,7 @@ class RegisterController extends Controller
                'required' => true,
                'matches' => 'password'
             ],
-         ]);
+         ], true);
 
          if ($validation->passed()) {
             $newUser = new Users();

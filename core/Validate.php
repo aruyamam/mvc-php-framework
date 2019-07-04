@@ -11,9 +11,15 @@ class Validate
       $this->_db = DB::getInstance();
    }
 
-   public function check($source, $items = [])
+   public function check($source, $items = [], $csrfCheck = false)
    {
       $this->_errors = [];
+      if ($csrfCheck) {
+         $csrfPass = FH::checkToken($source['csrf_token']);
+         if (!isset($source['csrf_token']) || !$csrfPass) {
+            $this->addError(['Something has gone wrong.', 'csrf_token']);
+         }
+      }
       foreach ($items as $item => $rules) {
          $item = Input::sanitaize($item);
          $display = $rules['display'];

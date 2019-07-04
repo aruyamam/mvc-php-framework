@@ -4,6 +4,7 @@
 <div class="col-md-6 offset-md-3 card card-body bg-light">
    <h3 class="text-center">Register Here!</h3>
    <form action="" class="form" method="post">
+      <?= FH::csrfInput(); ?>
       <div><?= $this->displayErrors; ?></div>
       <div class="form-group">
          <label for="fname">First Name</label>
