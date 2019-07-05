@@ -1,6 +1,7 @@
 <?php
 $menu = Router::getMenu('menu_acl');
-$currentPage = currentPage();
+$currentPage = H::currentPage();
+$currentUser = Users::currentUser();
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
    <a class="navbar-brand" href="<?= PROOT ?>home"><?= MENU_BRAND ?></a>
@@ -29,14 +30,14 @@ $currentPage = currentPage();
                   </div>
                </li>
             <?php else :
-            $active = ($val === $currentPage) ? 'active' : ''; ?>
+               $active = ($val === $currentPage) ? 'active' : ''; ?>
                <a class="dropdown-item <?= $active ?>" href="<?= $val ?>"><?= $key ?></a>
             <?php endif; ?>
          <?php endforeach; ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-         <?php if (currentUser()) : ?>
-            <li><a href="#">Hello <?= currentUser()->fname ?></a></li>
+         <?php if ($currentUser) : ?>
+            <li><a href="#">Hello <?= $currentUser->fname ?></a></li>
          <?php endif; ?>
       </ul>
    </div>

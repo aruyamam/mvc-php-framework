@@ -60,7 +60,7 @@ class Model
 
    public function save()
    {
-      $fields = getObjectProperties($this);
+      $fields = H::getObjectProperties($this);
       /// determine whether to update or insert
       if (property_exists($this, 'id') && $this->id != '') {
          return $this->update($this->id, $fields);
@@ -108,7 +108,7 @@ class Model
    public function data()
    {
       $data = new stdClass();
-      foreach (getObjectProperties($this) as $column => $value) {
+      foreach (H::getObjectProperties($this) as $column => $value) {
          $data->column = $value;
       }
       return $data;
@@ -119,7 +119,7 @@ class Model
       if (!empty($params)) {
          foreach ($params as $key => $val) {
             if (property_exists($this, $key)) {
-               $this->$key = sanitize($val);
+               $this->$key = FH::sanitize($val);
             }
          }
          return true;

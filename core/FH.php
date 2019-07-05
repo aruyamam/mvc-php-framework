@@ -4,8 +4,8 @@ class FH
 {
    public static function inputBlock($type, $label, $name, $value = '', $inputAttrs = [], $divAttrs = [])
    {
-      $divString = slef::stringifyAttrs($divAttrs);
-      $inputString = slef::stringifyAttrs($inputAttrs);
+      $divString = self::stringifyAttrs($divAttrs);
+      $inputString = self::stringifyAttrs($inputAttrs);
       $html = '<div' . $divString . '>';
       $html .= '<label for="' . $name . '">' . $label . '</label>';
       $html .= '<input type="' . $type . '" id="' . $name . '" name="' . $name . '" value="' . $value . '"' . $inputString . '>';
@@ -15,15 +15,15 @@ class FH
 
    public static function submitTag($buttonText, $inputAttrs = [])
    {
-      $inputString = slef::stringifyAttrs($inputAttrs);
+      $inputString = self::stringifyAttrs($inputAttrs);
       $html = '<input type="submit" value="' . $buttonText . '"' . $inputString . '>';
       return $html;
    }
 
    public static function submitBlock($buttonText, $inputAttrs = [], $divAttrs = [])
    {
-      $divString = slef::stringifyAttrs($divAttrs);
-      $inputString = slef::stringifyAttrs($inputAttrs);
+      $divString = self::stringifyAttrs($divAttrs);
+      $inputString = self::stringifyAttrs($inputAttrs);
       $html = '<div' . $divString . ' >';
       $html .= '<input type="submit" value="' . $buttonText . '"' . $inputString . '>';
       $html .= '</div>';
@@ -54,5 +54,20 @@ class FH
    public static function csrfInput()
    {
       return '<input type="hidden" name="csrf_token" id="csrf_token" value="' . self::generateToken() . '">';
+   }
+
+   public static function sanitize($dirty)
+   {
+      return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
+   }
+
+   public static function posted_values($post)
+   {
+      $clean_ary = [];
+      foreach ($post as $key => $value) {
+         $clean_ary[$key] = self::sanitize($value);
+      }
+
+      return $clean_ary;
    }
 }
