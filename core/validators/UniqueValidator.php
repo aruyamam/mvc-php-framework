@@ -18,7 +18,7 @@ class UniqueValidator extends CustomValidator
 
       // this allow you to check multiple fields for unique
       if (is_array($this->field)) {
-         array_unshift($this->field);
+         array_shift($this->field);
          foreach ($this->field as $adds) {
             $conditions[] = "{$adds} = ?";
             $bind[] = $this->_model->{$adds};

@@ -3,7 +3,7 @@
     "denied": {},
     "Home": ["*"],
     "Register": ["login", "register"],
-    "Resricted": ["*"]
+    "Restricted": ["*"]
   },
   "LoggedIn": {
     "denied": {
