@@ -88,7 +88,7 @@ class FH
          return '';
       }
 
-      $html = '<div class=""><ul class="alert alert-danger pl-5">';
+      $html = '<ul class="alert alert-danger pl-5">';
       foreach ($errors as $field => $error) {
          $html .= '<li class="text-danger">' . $error . '</li>';
          $html .= '<script>jQuery("document").ready(function() {jQuery("#' . $field . '").addClass("is-invalid");});</script>';
