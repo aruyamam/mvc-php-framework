@@ -2,24 +2,14 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="col-md-6 offset-md-3 card card-body bg-light">
+   <h3 class="text-center card-title">Log In</h3>
    <form action="<?= PROOT ?>register/login" class="form" method="post">
       <?= FH::csrfInput(); ?>
-      <div><?= $this->displayErrors; ?></div>
-      <h3 class="text-center">Log In</h3>
-      <div class="form-group">
-         <label for="username">Username</label>
-         <input type="text" name="username" id="username" class="form-control">
-      </div>
-      <div class="form-group">
-         <label for="password">Password</label>
-         <input type="password" name="password" id="password" class="form-control">
-      </div>
-      <div class="form-group">
-         <label for="remember_me">Remember Me <input type="checkbox" name="remember_me" id="remember_me" value="on"></label>
-      </div>
-      <div class="form-group">
-         <input type="submit" value="Login" class="btn btn-lg btn-primary">
-      </div>
+      <div><?= FH::displayErrors($this->displayErrors); ?></div>
+      <?= FH::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group']) ?>
+      <?= FH::inputBlock('password', 'Password', 'password', $this->login->password, ['class' => 'form-control'], ['class' => 'form-group']) ?>
+      <?= FH::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']) ?>
+      <?= FH::submitBlock('Login', ['class' => 'btn btn-primary btn-large'], ['class' => 'form-group']) ?>
       <div class="text-right">
          <a href="<?= PROOT ?>register/register" class="text-primary">Register</a>
       </div>
