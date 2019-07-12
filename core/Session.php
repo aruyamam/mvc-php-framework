@@ -32,4 +32,33 @@ class Session
 
       return $newString;
    }
+
+   /**
+    * Adds a session alert message
+    *
+    * @param string $type can be info, success, warning or danger
+    * @param string $msg the message you want to display in the alert
+    * @return void
+    */
+   public static function addMsg($type, $msg)
+   {
+      $sessionName = 'alert-' . $type;
+      self::set($sessionName, $msg);
+   }
+
+   public static function displayMsg()
+   {
+      $alerts = ['alert-info', 'alert-success', 'alert-warning', 'alert-danger'];
+      $html = '';
+      foreach ($alerts as $alert) {
+         if (self::exists($alert)) {
+            $html .= '<div class="alert ' . $alert . ' alert-dismissible fade show" role="alert">';
+            $html .= self::get($alert);
+            $html .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+            $html .= '</div>';
+            self::delete($alert);
+         }
+      }
+      return $html;
+   }
 }
