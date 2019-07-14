@@ -1,5 +1,18 @@
 <?php
 
+namespace App\Models;
+
+use App\Models\UserSessions;
+use Core\Cookie;
+use Core\Model;
+use Core\Session;
+use Core\Validators\EmailValidator;
+use Core\Validators\MaxValidator;
+use Core\Validators\MatchesValidator;
+use Core\Validators\MinValidator;
+use Core\Validators\RequriedValidator;
+use Core\Validators\UniqueValidator;
+
 class Users extends Model
 {
    private $_isLoggedIn;
@@ -27,12 +40,12 @@ class Users extends Model
             $u = $this->_db->findFirst('users', [
                'conditions' => 'id = ?',
                'bind' => [$user]
-            ], 'Users');
+            ], 'App\Models\Users');
          } else {
             $u = $this->_db->findFirst('users', [
                'conditions' => 'username = ?',
                'bind' => [$user]
-            ], 'Users');
+            ], 'App\Models\Users');
          }
          if ($u) {
             foreach ($u as $key => $val) {
@@ -127,7 +140,7 @@ class Users extends Model
    public static function currentUser()
    {
       if (self::$currentLoggedInUser === null && Session::exists(CURRENT_USER_SESSION_NAME)) {
-         $u = new Users((int) Session::get(CURRENT_USER_SESSION_NAME));
+         $u = new self((int) Session::get(CURRENT_USER_SESSION_NAME));
          self::$currentLoggedInUser = $u;
       }
 

@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Models;
+
+use Core\Model;
+use Core\Validators\RequriedValidator;
+
 class Login extends Model
 {
    public $username;

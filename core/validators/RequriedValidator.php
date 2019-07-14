@@ -1,5 +1,9 @@
 <?php
 
+namespace Core\Validators;
+
+use Core\Validators\CustomValidator;
+
 class RequriedValidator extends CustomValidator
 {
    public function runValidation(): bool

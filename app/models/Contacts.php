@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Models;
+
+use Core\Model;
+use Core\Validators\MaxValidator;
+use Core\Validators\RequriedValidator;
+
 class Contacts extends Model
 {
    public $id;

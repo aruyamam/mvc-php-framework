@@ -1,5 +1,13 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Models\Contacts;
+use App\Models\Users;
+use Core\Controller;
+use Core\Session;
+use Core\Router;
+
 class ContactsController extends Controller
 {
    protected $controller;

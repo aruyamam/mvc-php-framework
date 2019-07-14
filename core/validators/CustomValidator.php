@@ -1,5 +1,9 @@
 <?php
 
+namespace Core\Validators;
+
+use \Exception;
+
 abstract class CustomValidator
 {
    protected $_model;

@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Models;
+
+use Core\Cookie;
+use Core\Model;
+use Core\Session;
+
 class UserSessions extends Model
 {
    public $id;

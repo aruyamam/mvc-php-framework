@@ -1,3 +1,7 @@
+<?php
+
+use Core\Session;
+?>
 <!doctype html>
 <html lang="en">
 
